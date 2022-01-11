@@ -52,7 +52,7 @@ public class UserController {
         return ResponseEntity.created(uri).body(userService.savePermission(permission));
     }
 
-    @PostMapping("/role/addtoUser")
+    @PostMapping("/permission/addtoRole")
     public ResponseEntity<?> saveRoleToUser(@RequestBody @Valid RolePermission rolePermission){
         userService.addRoleToUser(rolePermission.getRoleName(), rolePermission.getPermissionName());
         return ResponseEntity.status(HttpStatus.OK).build();
