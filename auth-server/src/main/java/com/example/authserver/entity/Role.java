@@ -1,12 +1,22 @@
 package com.example.authserver.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Role {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short id;
 
     private String name;
@@ -19,6 +29,7 @@ public class Role {
     )
     private Set<Permission> permissions = new HashSet<>();
 
-    @ManyToOne
-    private User user;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id")
+    private Set<User> users;
 }
