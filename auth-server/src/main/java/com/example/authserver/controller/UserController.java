@@ -1,6 +1,8 @@
 package com.example.authserver.controller;
 
+import com.example.authserver.dto.RolePermission;
 import com.example.authserver.dto.UserRole;
+import com.example.authserver.entity.Permission;
 import com.example.authserver.entity.Role;
 import com.example.authserver.entity.User;
 import com.example.authserver.service.UserService;
@@ -41,6 +43,18 @@ public class UserController {
     @PostMapping("/role/addtoUser")
     public ResponseEntity<?> saveRoleToUser(@RequestBody @Valid UserRole userRole){
         userService.addRoleToUser(userRole.getUserName(), userRole.getRoleName());
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/permission/add")
+    public ResponseEntity<Permission> savePermission(@RequestBody @Valid Permission permission){
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/add").toUriString());
+        return ResponseEntity.created(uri).body(userService.savePermission(permission));
+    }
+
+    @PostMapping("/role/addtoUser")
+    public ResponseEntity<?> saveRoleToUser(@RequestBody @Valid RolePermission rolePermission){
+        userService.addRoleToUser(rolePermission.getRoleName(), rolePermission.getPermissionName());
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

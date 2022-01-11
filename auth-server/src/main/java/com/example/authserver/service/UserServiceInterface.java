@@ -1,5 +1,6 @@
 package com.example.authserver.service;
 
+import com.example.authserver.entity.Permission;
 import com.example.authserver.entity.Role;
 import com.example.authserver.entity.User;
 
@@ -10,9 +11,13 @@ public interface UserServiceInterface {
 
     Role saveRole(Role role);
 
+    Permission savePermission(Permission permission);
+
     void addRoleToUser(String userName, String roleName);
 
     User getUserByUsername(String username);
 
     List<User> getAllUsers();
+
+    void addRoleToPermisison(String roleName, String permissionName);
 }
