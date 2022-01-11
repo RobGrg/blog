@@ -2,6 +2,7 @@ package com.example.blogservice.controller;
 
 import com.example.blogservice.entity.Blog;
 import com.example.blogservice.service.BlogService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
 @AllArgsConstructor
 public class BlogController {
     private final BlogService blogService;
+    @Operation(summary = "Add Blog, Blog must new to the system")
     @PostMapping("/add")
     ResponseEntity<?> add(@RequestBody @Valid Blog blog){
         blogService.save(blog);
