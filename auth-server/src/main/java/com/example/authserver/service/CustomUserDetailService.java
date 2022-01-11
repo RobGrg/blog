@@ -1,5 +1,6 @@
 package com.example.authserver.service;
 
+import com.example.authserver.config.CustomUserDetail;
 import com.example.authserver.entity.User;
 import com.example.authserver.repo.UserRepo;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,6 @@ public class CustomUserDetailService implements UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException("Username not found for : "+username);
         }
-        return null;
+        return new CustomUserDetail(user);
     }
 }

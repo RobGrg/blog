@@ -24,11 +24,6 @@ public class User {
     @Size(min = 1, max = 100)
     private String userName;
 
-    @Column(unique = true, nullable = false)
-    @NotEmpty(message = "Please provide a email.")
-    @Size(min = 1, max = 100)
-    private String email;
-
     @NotEmpty(message = "Please provide a password.")
     private String password;
 
